@@ -29,8 +29,10 @@ app.post('/usuario', function (req, res) {
             ok:false,
             mensaje: "el nombre es necesario",
             status: 400})
+    } else {
+         res.json({persona: body});
     }
-    res.json({persona: body})
+   
   });
 app.put('/usuario/:id', function (req, res) {
 
@@ -43,4 +45,4 @@ app.delete('/usuario', function (req, res) {
     res.json('delete Usuario')
 });
 
-app.listen(process.env.PORT, ()=>console.log(`escuchando puerto ${process.env.PORT}`)) 
+app.listen(process.env.PORT, () => console.log(`escuchando puerto ${process.env.PORT}`)) 
