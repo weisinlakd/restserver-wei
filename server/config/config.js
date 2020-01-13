@@ -31,4 +31,26 @@ if (process.env.NODE_ENV === 'dev'){
 
 process.env.URLDB = urlDB;
 
+//======================
+//PARSEAR JWT
+//======================
 
+process.env.CADUCIDAD_TOKEN = 60*60*24*30;
+
+//======================
+// SEED de auth
+//======================
+
+process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
+
+
+
+//======================
+//PARSEAR JWT
+//======================
+
+// function parseJwt (token) {
+//     var base64Url = token.split('.')[1];
+//     var base64 = base64Url.replace('-', '+').replace('_', '/');
+//     return JSON.parse(window.atob(base64));
+// };
