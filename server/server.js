@@ -32,5 +32,8 @@ mongoose.connect(process.env.URLDB,
 );
 
 
+console.log(process.env.URLDB);
+
+console.log(process.env.SEED);
 
 app.listen(process.env.PORT, () => console.log(`escuchando puerto ${process.env.PORT}`)) 
