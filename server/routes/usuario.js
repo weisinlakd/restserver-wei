@@ -5,11 +5,11 @@ const Usuario = require('../models/usuario');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
-
+const  middleware = require('../middlewares/authenticacion');
 const app = express();
 
 
-app.get('/usuario', function (req, res) {
+app.get('/usuario', middleware.verificarToken, function (req, res) {
 
     let desde = parseInt(req.query.desde) || 0;
     let limite = parseInt(req.query.limite) || 0;
@@ -40,7 +40,7 @@ app.get('/usuario', function (req, res) {
 
 });
 
-app.post('/usuario', function (req, res) {
+app.post('/usuario', [middleware.verificarToken, middleware.verificarAdmin_Role], function (req, res) {
 
     let body = req.body;
     
@@ -69,7 +69,7 @@ app.post('/usuario', function (req, res) {
     
 });
 
-app.put('/usuario/:id', function (req, res) {
+app.put('/usuario/:id', [middleware.verificarToken, middleware.verificarAdmin_Role], function (req, res) {
 
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre','email','type','img','role','estado'] );
@@ -87,7 +87,7 @@ app.put('/usuario/:id', function (req, res) {
     
 });
 
-app.delete('/usuario/:id', function (req, res) { //baja logica
+app.delete('/usuario/:id', [middleware.verificarToken, middleware.verificarAdmin_Role] , function (req, res) { //baja logica
     
     let id = req.params.id;
 
