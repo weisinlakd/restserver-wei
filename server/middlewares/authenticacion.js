@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-
+const Categoria = require('../models/categoria');
 // =======================
 // Verificar Token
 //========================
@@ -43,5 +43,29 @@ let verificarAdmin_Role = (req, res, next) => {
 
     
 }
+
+
+// =======================
+// Obtener Categoria para Producto
+//========================
+
+// function getCategoria(req, res, next) {
+    
+//     let id = req.body.categoria;
+
+//     Categoria.findById({_id: id})
+//         .populate('usuario' , 'nombre email')
+//         .exec( (err, categoria) => {
+            
+//             if (err) return res.status(400).json({ ok:false, err });
+
+//             if (!categoria || categoria.estado === false) return res.status(404).json({ok:false,err:{message: "no hay categoria con ese id"}});
+
+//             req.categoria = categoria;
+//             next();
+            
+            
+//         })
+// }
 
 module.exports = {verificarToken, verificarAdmin_Role};
