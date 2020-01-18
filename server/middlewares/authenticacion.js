@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const Categoria = require('../models/categoria');
+// const Categoria = require('../models/categoria');
 // =======================
 // Verificar Token
 //========================

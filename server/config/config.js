@@ -35,7 +35,13 @@ process.env.URLDB = urlDB;
 //PARSEAR JWT
 //======================
 
- process.env.CADUCIDAD_TOKEN = '48h'; //60*60*24*30;
+process.env.CADUCIDAD_TOKEN = '48h'; //60*60*24*30;
+
+//======================
+// tipos de foto
+//======================
+
+// process.env.TIPOS_FOTO = ['usuarios' , 'productos'];
 
 //======================
 // SEED de auth
