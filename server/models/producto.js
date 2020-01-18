@@ -15,6 +15,10 @@ var productoSchema = new Schema({
         type: String, 
         required: false 
     },
+    img: { 
+        type: String, 
+        required: false 
+    },
     disponible: { 
         type: Boolean, 
         required: true, 
@@ -34,7 +38,7 @@ var productoSchema = new Schema({
         default: true
     }
 
-    });
+});
 
 
 module.exports = mongoose.model('Producto', productoSchema);

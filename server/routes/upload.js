@@ -1,7 +1,7 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
-const middleware = require('../middlewares/authenticacion');
 const Usuario = require('../models/usuario');
+const Producto = require('../models/producto');
 const app = express();
 const path = require('path');
 const fs = require('fs');
@@ -60,8 +60,12 @@ app.put('/upload/:tipo/:id', (req, res) => {
                 })
             }
 
-
-            imagenUsuario(id , res , nombre);
+            if (tipo == 'usuarios') {
+                imagenUsuario(id , res , nombre);
+            } else {
+                imagenProducto(id , res , nombre);
+            }
+            
 
         });
 
@@ -114,6 +118,48 @@ function imagenUsuario(id, res, nombre) {
 
     })
 }
+
+function imagenProducto(id, res, nombre) {
+
+
+    Producto.findById({_id: id} , (err, productoDB) => {
+
+        if (err){
+            borrarArchivo(nombre, 'productos');
+            return res.status(500).json({ok: false, err});
+        }
+        
+        if (!productoDB){
+            borrarArchivo(nombre, 'productos');
+            return res.status(500).json({ok: false, err})
+        }
+
+        borrarArchivo(productoDB.img, 'productos');
+
+        productoDB.img = nombre;
+
+        productoDB.save(
+            (err, productoDB) => {
+
+                if (err)
+                    return res.status(500).json({ok: false, err});
+                
+                    res.json({
+                        ok: true, 
+                        producto: productoDB, 
+                        img: nombre
+                    });
+            }
+        )
+        
+
+    })
+}
+
+
+
+
+
 
 function borrarArchivo (nombre, tipo) {
 
