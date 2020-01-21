@@ -22,14 +22,18 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 // ===================
 
 let urlDB;
+let path;
 
 if (process.env.NODE_ENV === 'dev'){
     urlDB = 'mongodb://localhost:27017/cafe';
+    path = '../../uploads';
 }else {
     urlDB = process.env.MONGO_URI;
+    path = '../../../uploads';
 }
 
 process.env.URLDB = urlDB;
+process.env.RUTA_IMG = path;
 
 //======================
 //PARSEAR JWT

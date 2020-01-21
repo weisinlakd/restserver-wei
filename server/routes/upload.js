@@ -46,7 +46,7 @@ app.put('/upload/:tipo/:id', (req, res) => {
     // Use the mv() method to place the file somewhere on your server
 
         let nombre = `${id}-${ new Date().getMilliseconds()}.${ext}`
-        let ruta = path.resolve( __dirname , '../../uploads');
+        let ruta = path.resolve( __dirname , `${process.env.RUTA_IMG}`);
 
 
         
@@ -163,7 +163,7 @@ function imagenProducto(id, res, nombre) {
 
 function borrarArchivo (nombre, tipo) {
 
-    let rutaImg = path.resolve( __dirname , `../../uploads/${tipo}/${nombre}`);
+    let rutaImg = path.resolve( __dirname , `${process.env.RUTA_IMG}/${tipo}/${nombre}`);
 
     // console.log(rutaImg)
     if (fs.existsSync(rutaImg)) {

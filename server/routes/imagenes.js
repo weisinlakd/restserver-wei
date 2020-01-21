@@ -25,7 +25,7 @@ app.get('/imagen/:tipo/:img', verificarTokenImg , (req, res) => {
         return res.status(404).json({ok: false, err: {message: "la dirección no es correcta"}});
     }
 
-    let pathImg = path.resolve( __dirname , `../../uploads/${tipo}/${img}`);
+    let pathImg = path.resolve( __dirname , `${process.env.RUTA_IMG}/${tipo}/${img}`);
 
 
     if (fs.existsSync(pathImg)) {
