@@ -29,7 +29,8 @@ if (process.env.NODE_ENV === 'dev'){
     path = '../../uploads';
 }else {
     urlDB = process.env.MONGO_URI;
-    path = '../../../uploads';
+    // path = '../../../uploads';
+    path = '../../uploads';
 }
 
 process.env.URLDB = urlDB;

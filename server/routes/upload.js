@@ -57,6 +57,7 @@ app.put('/upload/:tipo/:id', (req, res) => {
                 return res.status(500).json({
                     ok: false, 
                     message: 'primer if',
+                    pathMio: `${ruta}/${tipo}/${nombre}`,
                     err
                 })
             }
