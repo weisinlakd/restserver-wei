@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 // const Categoria = require('../models/categoria');
+
+
 // =======================
 // Verificar Token
 //========================
@@ -45,6 +47,29 @@ let verificarAdmin_Role = (req, res, next) => {
 }
 
 
+
+// =======================
+// Verificar Token de Img
+//========================
+
+let verificarTokenImg = (req, res, next) => {
+
+    let token = req.query.token;
+
+    jwt.verify(token , process.env.SEED , (err, decoded) => {
+        if (err) return res.status(401).json({ok:false,err: {message: "token invalido"}});
+        console.log(decoded);
+        req.usuario = decoded.usuario;
+        next();
+    } );
+
+
+    
+
+    
+}
+
+
 // =======================
 // Obtener Categoria para Producto
 //========================
@@ -68,4 +93,8 @@ let verificarAdmin_Role = (req, res, next) => {
 //         })
 // }
 
-module.exports = {verificarToken, verificarAdmin_Role};
+module.exports = {
+    verificarToken, 
+    verificarAdmin_Role,
+    verificarTokenImg
+};
