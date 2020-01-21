@@ -7,7 +7,7 @@ const path = require('path');
 const fs = require('fs');
 
 
-app.use(fileUpload());
+app.use(fileUpload({createParentPath: true}));
 
 app.put('/upload/:tipo/:id', (req, res) => {
 
