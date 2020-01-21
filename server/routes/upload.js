@@ -56,6 +56,7 @@ app.put('/upload/:tipo/:id', (req, res) => {
             if (err){
                 return res.status(500).json({
                     ok: false, 
+                    message: 'primer if',
                     err
                 })
             }
@@ -89,12 +90,12 @@ function imagenUsuario(id, res, nombre) {
 
         if (err){
             borrarArchivo(nombre, 'usuarios');
-            return res.status(500).json({ok: false, err});
+            return res.status(500).json({ok: false,  message: 'segundo if', err});
         }
         
         if (!usuarioDB){
             borrarArchivo(nombre, 'usuarios');
-            return res.status(500).json({ok: false, err})
+            return res.status(500).json({ok: false,  message: 'tercer if', err})
         }
 
         borrarArchivo(usuarioDB.img, 'usuarios');
@@ -126,12 +127,12 @@ function imagenProducto(id, res, nombre) {
 
         if (err){
             borrarArchivo(nombre, 'productos');
-            return res.status(500).json({ok: false, err});
+            return res.status(500).json({ok: false,  message: 'cuarto if', err});
         }
         
         if (!productoDB){
             borrarArchivo(nombre, 'productos');
-            return res.status(500).json({ok: false, err})
+            return res.status(500).json({ok: false,  message: 'quinto if', err})
         }
 
         borrarArchivo(productoDB.img, 'productos');
